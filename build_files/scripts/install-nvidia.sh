@@ -23,19 +23,27 @@ dnf5 -y install \
     nvidia-persistenced \
     nvidia-settings
 
-# Configure dracut for early NVIDIA loading
-# Change omit_drivers to force_drivers and add i915/amdgpu support
+# Configure dracut to include GPU drivers in initramfs
+# - Upstream defaults to omit_drivers (excludes from initramfs, loads later)
+# - We use force_drivers to ensure early loading during boot
+# - Include i915/amdgpu for hybrid GPU laptop support (Intel/AMD + NVIDIA)
 sed -i 's@omit_drivers@force_drivers@g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 sed -i 's@ nvidia @ i915 amdgpu nvidia @g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 
-# Configure NVIDIA DRM modeset
+# Configure NVIDIA kernel module options
+# - modeset=1: Enable kernel mode setting (required for Wayland)
+# - fbdev=1: Enable framebuffer device (improves suspend/resume and display handoff)
 mkdir -p /usr/lib/modprobe.d /etc/modprobe.d
 cat > /usr/lib/modprobe.d/nvidia-modeset.conf << 'EOF'
-# Nvidia modesetting support. Set to 0 or comment to disable kernel modesetting
-# support. This must be disabled in case of SLI Mosaic.
 options nvidia-drm modeset=1 fbdev=1
 EOF
 cp /usr/lib/modprobe.d/nvidia-modeset.conf /etc/modprobe.d/nvidia-modeset.conf
+
+# Regenerate initramfs with the new configuration
+# Must run after all dracut/modprobe changes to bake drivers into the image
+QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-(\d+\.\d+\.\d+)' | sed -E 's/kernel-//')"
+/usr/bin/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
+chmod 0600 "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
 
 # Clean up NVIDIA repo (updates baked into image)
 rm -f /etc/yum.repos.d/negativo17-fedora-nvidia.repo
