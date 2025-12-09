@@ -49,6 +49,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
 # Environment & System Tools
 # -----------------------------------------------------------------------------
 dnf5 -y --setopt=install_weak_deps=False install \
+    glibc-langpack-en \
     tuned-ppd \
     xorg-x11-server-Xwayland \
     headsetcontrol \
@@ -140,6 +141,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
 # -----------------------------------------------------------------------------
 dnf5 -y --setopt=install_weak_deps=False install \
     fontawesome-fonts-all \
+    google-noto-sans-mono-fonts \
     gnome-themes-extra \
     gnome-icon-theme \
     paper-icon-theme \
