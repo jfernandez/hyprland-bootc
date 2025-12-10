@@ -84,18 +84,28 @@ dnf5 -y --setopt=install_weak_deps=False install \
     pulseaudio-utils
 
 # -----------------------------------------------------------------------------
-# Networking
+# Networking (iwd + systemd-networkd)
 # -----------------------------------------------------------------------------
 dnf5 -y --setopt=install_weak_deps=False install \
-    network-manager-applet \
-    NetworkManager-openvpn \
-    NetworkManager-openvpn-gnome \
-    NetworkManager-openconnect \
-    NetworkManager-openconnect-gnome \
+    iwd \
+    iw \
+    wireless-regdb \
+    systemd-networkd \
+    systemd-resolved \
     bluez \
     bluez-tools \
     blueman \
     firewall-config
+
+# Install impala (wifi TUI) from GitHub releases
+curl -fsSL https://github.com/pythops/impala/releases/download/v0.6.0/impala-x86_64-unknown-linux-gnu \
+    -o /usr/bin/impala && chmod +x /usr/bin/impala
+
+# -----------------------------------------------------------------------------
+# Firmware (required for wifi and other hardware)
+# -----------------------------------------------------------------------------
+dnf5 -y --setopt=install_weak_deps=False install \
+    linux-firmware
 
 # -----------------------------------------------------------------------------
 # Thunar File Manager
