@@ -17,6 +17,7 @@
     "modules-right": [
         "idle_inhibitor",
         "pulseaudio",
+        "custom/wifi",
         "network",
         "power-profiles-daemon",
         "cpu",
@@ -111,6 +112,13 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "custom/wifi": {
+        "format": "{}",
+        "exec": "printf '\\uf1eb'",
+        "interval": "once",
+        "tooltip": "Manage WiFi",
+        "on-click": "kitty --title 'WiFi' impala"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
