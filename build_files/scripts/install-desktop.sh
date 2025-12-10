@@ -21,9 +21,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     sddm-themes \
     qt5-qtgraphicaleffects \
     qt5-qtquickcontrols2 \
-    qt5-qtsvg \
-    kwallet \
-    pam-kwallet
+    qt5-qtsvg
 
 # -----------------------------------------------------------------------------
 # Hyprland Window Manager
@@ -52,7 +50,6 @@ dnf5 -y --setopt=install_weak_deps=False install \
     glibc-langpack-en \
     tuned-ppd \
     xorg-x11-server-Xwayland \
-    headsetcontrol \
     mediainfo \
     polkit \
     xfce-polkit \
@@ -65,14 +62,12 @@ dnf5 -y --setopt=install_weak_deps=False install \
     playerctl \
     qt5-qtwayland \
     qt6-qtwayland \
-    vulkan-validation-layers \
     vulkan-tools \
     google-noto-emoji-fonts \
     gnome-disk-utility \
     ddcutil \
     alsa-firmware \
-    p7zip \
-    steam-devices
+    p7zip
 
 # -----------------------------------------------------------------------------
 # PipeWire Audio Stack
@@ -80,8 +75,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
 dnf5 -y --setopt=install_weak_deps=False install \
     wireplumber \
     pipewire \
-    pamixer \
-    pulseaudio-utils
+    pamixer
 
 # -----------------------------------------------------------------------------
 # Networking (iwd + systemd-networkd)
@@ -121,8 +115,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     gvfs-smb \
     gvfs-nfs \
     gvfs-fuse \
-    gvfs-archive \
-    android-tools
+    gvfs-archive
 
 # -----------------------------------------------------------------------------
 # Screenshot Tools
