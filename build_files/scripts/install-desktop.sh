@@ -32,6 +32,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     hyprlock \
     hypridle \
     hyprland-qtutils \
+    hyprpolkitagent \
     kitty \
     waybar \
     xdg-desktop-portal-hyprland
@@ -52,7 +53,6 @@ dnf5 -y --setopt=install_weak_deps=False install \
     xorg-x11-server-Xwayland \
     mediainfo \
     polkit \
-    xfce-polkit \
     fprintd-pam \
     xdg-user-dirs \
     dbus-tools \
