@@ -75,6 +75,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
 dnf5 -y --setopt=install_weak_deps=False install \
     wireplumber \
     pipewire \
+    pipewire-pulseaudio \
     pamixer
 
 # -----------------------------------------------------------------------------
