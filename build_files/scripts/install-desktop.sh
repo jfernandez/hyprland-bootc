@@ -153,6 +153,22 @@ dnf5 -y --setopt=install_weak_deps=False install \
     papirus-icon-theme
 
 # -----------------------------------------------------------------------------
+# Flatpak & Bazaar App Store
+# -----------------------------------------------------------------------------
+dnf5 -y --setopt=install_weak_deps=False install \
+    flatpak
+
+dnf5 -y copr enable ublue-os/packages
+dnf5 -y --setopt=install_weak_deps=False install \
+    bazaar
+dnf5 -y copr disable ublue-os/packages
+
+# Add Flathub remote (system-wide)
+mkdir -p /etc/flatpak/remotes.d
+curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo \
+    https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# -----------------------------------------------------------------------------
 # Post-install: SDDM theming (maldives theme with white text)
 # -----------------------------------------------------------------------------
 if [[ -f /usr/share/sddm/themes/maldives/Main.qml ]]; then
