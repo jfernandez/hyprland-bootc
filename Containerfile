@@ -36,6 +36,10 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5,sharing=locked \
     --mount=type=bind,from=build-ctx,source=/,target=/ctx \
     /ctx/build_files/scripts/install-desktop.sh
 
+# Badged polkit agent
+RUN --mount=type=bind,from=build-ctx,source=/,target=/ctx \
+    /ctx/build_files/scripts/install-badged.sh
+
 # System configuration files
 COPY --from=system-ctx /system /
 
@@ -74,6 +78,10 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5,sharing=locked \
     --mount=type=cache,dst=/var/cache/dnf,sharing=locked \
     --mount=type=bind,from=build-ctx,source=/,target=/ctx \
     /ctx/build_files/scripts/install-desktop.sh
+
+# Badged polkit agent
+RUN --mount=type=bind,from=build-ctx,source=/,target=/ctx \
+    /ctx/build_files/scripts/install-badged.sh
 
 # System configuration files
 COPY --from=system-ctx /system /

@@ -1,6 +1,10 @@
-auth      sufficient pam_fprintd.so
-auth      required pam_unix.so
+# PAM configuration for polkit-1 with fingerprint support
+# Fingerprint auth is tried first (sufficient = success skips remaining)
+# Falls back to password if fingerprint fails or isn't available
 
-account   required pam_unix.so
-password  required pam_unix.so
-session   required pam_unix.so
+auth      sufficient pam_fprintd.so
+auth      required   pam_unix.so try_first_pass
+
+account   required   pam_unix.so
+password  required   pam_unix.so
+session   required   pam_unix.so

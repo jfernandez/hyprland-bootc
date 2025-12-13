@@ -32,7 +32,6 @@ dnf5 -y --setopt=install_weak_deps=False install \
     hyprlock \
     hypridle \
     hyprland-qtutils \
-    hyprpolkitagent \
     kitty \
     waybar \
     xdg-desktop-portal-hyprland
@@ -93,7 +92,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     firewall-config
 
 # Install impala (wifi TUI) from GitHub releases
-curl -fsSL https://github.com/pythops/impala/releases/download/v0.6.0/impala-x86_64-unknown-linux-gnu \
+curl --retry 5 -fsSL https://github.com/pythops/impala/releases/download/v0.6.0/impala-x86_64-unknown-linux-gnu \
     -o /usr/bin/impala && chmod +x /usr/bin/impala
 
 # -----------------------------------------------------------------------------
