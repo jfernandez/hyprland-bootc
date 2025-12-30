@@ -11,7 +11,7 @@ set -ouex pipefail
 dnf5 -y install dnf5-plugins
 
 # Enable Hyprland COPR
-dnf5 -y copr enable solopasha/hyprland
+dnf5 -y copr enable lionheartp/Hyprland
 
 # -----------------------------------------------------------------------------
 # SDDM Display Manager
@@ -31,7 +31,8 @@ dnf5 -y --setopt=install_weak_deps=False install \
     hyprpaper \
     hyprlock \
     hypridle \
-    hyprland-qtutils \
+    hyprland-qt-support \
+    hyprland-guiutils \
     kitty \
     waybar \
     xdg-desktop-portal-hyprland
@@ -180,4 +181,4 @@ if [[ -f /usr/share/sddm/themes/maldives/Main.qml ]]; then
 fi
 
 # Disable COPR
-dnf5 -y copr disable solopasha/hyprland
+dnf5 -y copr disable lionheartp/Hyprland
